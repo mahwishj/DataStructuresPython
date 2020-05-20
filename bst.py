@@ -1,4 +1,5 @@
-import sys
+# import sys
+
 class BSTNode:
     def __init__(self, data, left, right):
         self.data = data
@@ -11,24 +12,30 @@ class BST:
         self.root = None
 
 
-    def search(rootNode, data):
+
+    # search Functions
+    def searchTree(self, rootNode, data):
         if rootNode is None:
-            print("{} not found".format(data))
+            # print("{} not found".format(data))
             return False
 
         elif rootNode.data == data:
-            print("{} found".format(data))
+            # print("{} found".format(data))
             return True
 
         elif rootNode.data < data:
-            return search(rootNode.right, data)
+            return self.searchTree(rootNode.right, data)
 
         else: # self.data > data
-            return search(rootNode.left, data)
+            return self.searchTree(rootNode.left, data)
 
 
+    def search(self, data):
+        return self.searchTree(self.root, data)
 
-    def deleteNode(parent, curr, data):
+
+    # delete functions
+    def deleteNode(self, parent, curr, data):
 
         if curr is None: # not found, return
             return
@@ -43,7 +50,10 @@ class BST:
 
             # case 1: curr has no children
             if curr.right is None and curr.left is None:
-                if parent.right is curr:
+                if parent is None:
+                    self.root = None
+
+                elif parent.right is curr:
                     parent.right = None
                 else:
                     parent.left = None
@@ -52,14 +62,24 @@ class BST:
 
             # case 2: curr has only one child
             elif curr.right is None: # has a left child
-                if parent.right is curr:
+                if parent is None: # match at root
+                    self.root = curr.left
+
+
+                elif parent.right is curr:
                     parent.right = curr.left
+
                 else:
                     parent.left = curr.left
 
             elif curr.left is None: #has a right child
-                if parent.right is curr:
+                if parent is None: # match at root
+                    self.root = curr.right
+
+
+                elif parent.right is curr:
                     parent.right = curr.right
+
                 else:
                     parent.left = curr.right
 
@@ -76,29 +96,19 @@ class BST:
                     ptr = ptr.left
 
                 curr.data = ptr.data
-                prev.left = None
-
-            #print("{} deleted".format(data))
-
-
-
+                if ptr is prev.right:
+                    prev.right = None
+                else:
+                    prev.left = None
 
     def delete(self, data):
-        if self.root is None:
-            return
-
         self.deleteNode(None, self.root, data)
 
 
     # insert functions
     def insertNode(self, curr, data):
 
-        if curr is None:
-            curr = BSTNode(data, None, None)
-            print("{} inserted".format(data))
-
-
-        elif curr.data == data: # node already in tree
+        if curr.data == data: # node already in tree
             return
 
         elif data < curr.data:
@@ -135,12 +145,6 @@ class BST:
         self.inorderPrint(self.root)
 
 
-
-
-
-
-
-
 # testing
 
 newBST = BST()
@@ -154,3 +158,53 @@ newBST.insert(17)
 newBST.insert(20)
 
 newBST.inorder()
+print("\n")
+
+
+# print(newBST.search(17))
+# print(newBST.search(25))
+# print(newBST.search(5))
+# print(newBST.search(30))
+# print(newBST.search(15))
+# print(newBST.search(20))
+#
+# print(newBST.search(28))
+# print(newBST.search(16))
+# print(newBST.search(2))
+# print(newBST.search(6))
+# print(newBST.search(29))
+# print(newBST.search(55))
+# print(newBST.search(18))
+# print("\n")
+
+newBST.delete(25)
+newBST.inorder()
+print("\n")
+
+newBST.delete(60)
+newBST.inorder()
+print("\n")
+
+newBST.delete(20)
+newBST.inorder()
+print("\n")
+
+newBST.delete(15)
+newBST.inorder()
+print("\n")
+
+newBST.delete(20)
+newBST.inorder()
+print("\n")
+
+newBST.delete(5)
+newBST.inorder()
+print("\n")
+
+newBST.delete(17)
+newBST.inorder()
+print("\n")
+
+newBST.delete(30)
+newBST.inorder()
+print("\n")
