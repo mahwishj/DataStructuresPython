@@ -28,16 +28,16 @@ class BST:
 
 
 
-    def delete(parent, curr, data):
+    def deleteNode(parent, curr, data):
 
         if curr is None: # not found, return
             return
 
         elif data < curr.data:
-            delete(curr, curr.left, data)
+            self.deleteNode(curr, curr.left, data)
 
         elif data > curr.data:
-            delete(curr, curr.right, data)
+            self.deleteNode(curr, curr.right, data)
 
         else: # found node to delete
 
@@ -78,10 +78,16 @@ class BST:
                 curr.data = ptr.data
                 prev.left = None
 
-            print("{} deleted".format(data))
+            #print("{} deleted".format(data))
 
 
 
+
+    def delete(self, data):
+        if self.root is None:
+            return
+
+        self.deleteNode(None, self.root, data)
 
 
     # insert functions
