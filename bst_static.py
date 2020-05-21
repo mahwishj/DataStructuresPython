@@ -21,16 +21,16 @@ class BSTNode:
         else: # self.data > data
             return BSTNode.search(rootNode.left, data)
 
-    def delete(parent, curr, data):
+    def delete(parent, root,  curr, data):
 
         if curr is None: # not found, return
-            return
+            return root
 
         elif data < curr.data:
-            BSTNode.delete(curr, curr.left, data)
+            return BSTNode.delete(curr, root, curr.left, data)
 
         elif data > curr.data:
-            BSTNode.delete(curr, curr.right, data)
+            return BSTNode.delete(curr, root, curr.right, data)
 
         else: # found node to delete
 
@@ -38,8 +38,10 @@ class BSTNode:
             if curr.right is None and curr.left is None:
 
                 if parent is None:
-                    print("Delete Root: {}".format(curr.data))
+                    #print("Delete Root: {}".format(curr.data))
                     curr = None
+                    root = None
+
 
 
                 elif parent.right is curr:
@@ -91,6 +93,7 @@ class BSTNode:
                 else:
                     prev.left = None
 
+        return root
 
 
     def insert(curr, data):
@@ -153,34 +156,36 @@ print("\n")
 # print("\n")
 
 
-BSTNode.delete(None, root, 25)
+root = BSTNode.delete(None, root, root, 25)
 BSTNode.inorder(root)
 print("\n")
 
-BSTNode.delete(None, root, 60)
+root = BSTNode.delete(None,root, root, 60)
 BSTNode.inorder(root)
 print("\n")
 
-BSTNode.delete(None, root, 20)
+root = BSTNode.delete(None, root, root, 20)
 BSTNode.inorder(root)
 print("\n")
 
-BSTNode.delete(None, root, 15)
+root = BSTNode.delete(None, root, root, 15)
 BSTNode.inorder(root)
 print("\n")
 
-BSTNode.delete(None, root, 20)
+root = BSTNode.delete(None,root,  root, 20)
 BSTNode.inorder(root)
 print("\n")
 
-BSTNode.delete(None, root, 5)
+root = BSTNode.delete(None, root, root, 5)
 BSTNode.inorder(root)
 print("\n")
 
-BSTNode.delete(None, root, 17)
+root = BSTNode.delete(None, root, root, 17)
 BSTNode.inorder(root)
 print("\n")
 
-BSTNode.delete(None, root, 30)
+root = BSTNode.delete(None,root, root, 30)
 BSTNode.inorder(root)
 print("\n")
+
+print("end")
