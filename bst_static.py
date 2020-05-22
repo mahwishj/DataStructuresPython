@@ -126,6 +126,19 @@ class BSTNode:
         print("{} ".format(curr.data), end=" ");
         BSTNode.inorder(curr.right)
 
+    def inorderGen(curr):
+        if curr is not None:
+
+            genLeft = BSTNode.inorderGen(curr.left)
+            for nodedata in genLeft:
+                yield nodedata  # curr.data from previous call
+
+            yield curr.data
+
+            genRight = BSTNode.inorderGen(curr.right)
+            for nodedata in genRight:
+                yield nodedata
+
 root = None
 
 root = BSTNode.insert(root, 25)
@@ -137,6 +150,15 @@ BSTNode.insert(root, 17)
 BSTNode.insert(root, 20)
 
 BSTNode.inorder(root)
+print("\n")
+
+# testing bst generator
+print("Testing Generator: ")
+bstgen = BSTNode.inorderGen(root)
+
+for node in bstgen:
+    print(node, end=" ")
+
 print("\n")
 
 # print(BSTNode.search(root, 17))
@@ -156,36 +178,36 @@ print("\n")
 # print("\n")
 
 
-root = BSTNode.delete(None, root, root, 25)
-BSTNode.inorder(root)
-print("\n")
-
-root = BSTNode.delete(None,root, root, 60)
-BSTNode.inorder(root)
-print("\n")
-
-root = BSTNode.delete(None, root, root, 20)
-BSTNode.inorder(root)
-print("\n")
-
-root = BSTNode.delete(None, root, root, 15)
-BSTNode.inorder(root)
-print("\n")
-
-root = BSTNode.delete(None,root,  root, 20)
-BSTNode.inorder(root)
-print("\n")
-
-root = BSTNode.delete(None, root, root, 5)
-BSTNode.inorder(root)
-print("\n")
-
-root = BSTNode.delete(None, root, root, 17)
-BSTNode.inorder(root)
-print("\n")
-
-root = BSTNode.delete(None,root, root, 30)
-BSTNode.inorder(root)
-print("\n")
-
-print("end")
+# root = BSTNode.delete(None, root, root, 25)
+# BSTNode.inorder(root)
+# print("\n")
+#
+# root = BSTNode.delete(None,root, root, 60)
+# BSTNode.inorder(root)
+# print("\n")
+#
+# root = BSTNode.delete(None, root, root, 20)
+# BSTNode.inorder(root)
+# print("\n")
+#
+# root = BSTNode.delete(None, root, root, 15)
+# BSTNode.inorder(root)
+# print("\n")
+#
+# root = BSTNode.delete(None,root,  root, 20)
+# BSTNode.inorder(root)
+# print("\n")
+#
+# root = BSTNode.delete(None, root, root, 5)
+# BSTNode.inorder(root)
+# print("\n")
+#
+# root = BSTNode.delete(None, root, root, 17)
+# BSTNode.inorder(root)
+# print("\n")
+#
+# root = BSTNode.delete(None,root, root, 30)
+# BSTNode.inorder(root)
+# print("\n")
+#
+# print("end")

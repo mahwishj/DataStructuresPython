@@ -1,4 +1,5 @@
 # import sys
+#import generators.py
 
 class BSTNode:
     def __init__(self, data, left, right):
@@ -144,6 +145,31 @@ class BST:
     def inorder(self):
         self.inorderPrint(self.root)
 
+    # def inorderGenYield(self, curr):
+    #
+    #     if curr is not None:
+    #
+    #         genLeft = self.inorderGenYield(curr.left)
+    #
+    #         # for node in genLeft:
+    #         #     yield node
+    #
+    #
+    #         yield curr.data
+    #
+    #         genRight = self.inorderGenYield(curr.right)
+    #
+    #         # for node in genRight:
+    #         #     yield node
+    #
+    #     else:
+    #         yield None
+    #
+    #
+    # def inorderGen(self):
+    #     # print("Calling inorderGenYield. . . ")
+    #     self.inorderGenYield(self.root)
+
 
 # testing
 
@@ -159,6 +185,15 @@ newBST.insert(20)
 
 newBST.inorder()
 print("\n")
+
+# testing bst generator
+# print("Testing Generator: ")
+# bstgen = newBST.inorderGen()
+#
+# for node in bstgen:
+#     print(node, end=" ")
+#
+# print("\n")
 
 
 # print(newBST.search(17))
