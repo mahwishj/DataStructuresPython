@@ -136,7 +136,7 @@ class BSTNode:
             yield curr.data
 
             genRight = BSTNode.inorderGen(curr.right)
-            for nodedata in genRight:
+            for node in genRight:
                 yield nodedata
 
 root = None
@@ -155,6 +155,8 @@ print("\n")
 # testing bst generator
 print("Testing Generator: ")
 bstgen = BSTNode.inorderGen(root)
+
+print(bstgen)
 
 for node in bstgen:
     print(node, end=" ")
